@@ -1,0 +1,113 @@
+
+
+    <div id="navbar">
+      <div class="breadcrumbs homepage">
+        <a href="http://brown.edu/" class="homelink">
+          <img src="{{ cluster_settings.MEDIA_URL }}images/homelink.png" width="62" height="36" alt="MIT Mobile Web Home" />
+        </a>
+        <div class="pagetitle">
+          <!-- <img src="{{ cluster_settings.MEDIA_URL }}images/title-shuttleschedule.png" width="28" height="28" alt="" class="moduleicon" /> -->
+          Lib Cluster Info <span class="smallprint">({{ time }})</span>
+        </div> <!-- end div class="pagetitle" -->
+      </div> <!-- end div class="breadcrumbs homepage" -->
+      <div class="help">
+        <a href="{{ cluster_settings.HELP_URL }}"><img src="{{ cluster_settings.MEDIA_URL }}images/help.png" width="34" height="36" alt="Help" /></a>
+      </div> <!-- end div class="help" -->
+    </div> <!-- end div id="navbar" -->
+
+    <div id="container">
+      <div class="nonfocal">
+        <p id="statusmessage"></p>
+        <h3>Rock Cluster Availability:</h3>
+        {% if rock_open_data %}
+          <span class="smallprint">(rock clusters are {{ rock_open_data.open_status }})</span>
+        {% else %}
+          <span class="smallprint">(rock cluster hours unavailable)</span>
+        {% endif %}
+      </div> <!-- end div class="nonfocal" -->
+      <a name="top"></a>
+      <ul class="nav">
+        <li>
+          <a href="/{{ cluster_settings.PROJECT_NAME }}/clusters/chart_viewer/rock-overall/">Overall <span class="smallprint">({{ rock_all_available_counts }})</span> <span id="rock_overall"> z </span></a>
+        </li>
+        <li>
+          <a href="/{{ cluster_settings.PROJECT_NAME }}/clusters/chart_viewer/rock-level-1/">Level 1 Cluster <span class="smallprint">({{ rock_level_1_counts.calculated_available }})</span> <span id="rock_level_1"> z </span></a>
+        </li>
+        <li>
+          <a href="/{{ cluster_settings.PROJECT_NAME }}/clusters/chart_viewer/rock-level-2-main/">Level 2 Main Cluster <span class="smallprint">({{ rock_level_2_main_counts.calculated_available }})</span> <span id="rock_level_2_main"> z </span></a>
+        </li>
+        {% ifequal show_grad_cluster_choice 'show' %}
+        <li>
+          <a href="/{{ cluster_settings.PROJECT_NAME }}/clusters/chart_viewer/rock-level-2-grad/">Level 2 Grad Cluster <span class="smallprint">({{ rock_level_2_grad_counts.calculated_available }})</span> <span id="rock_level_2_grad"> z </span></a>
+        </li>
+        {% endifequal %}
+      </ul>
+      <div class="nonfocal">
+        <p id="statusmessage"></p>
+        <h3>SciLi Cluster Availability:</h3>
+        {% if friedman_open_data %}
+          <span class="smallprint">(scili clusters are {{ rock_open_data.open_status }})</span>
+        {% else %}
+          <span class="smallprint">(scili cluster hours unavailable)</span>
+        {% endif %}
+      </div> <!-- end div class="nonfocal" -->
+      <a name="top"></a>
+      <ul class="nav">
+        <li>
+          <a href="/{{ cluster_settings.PROJECT_NAME }}/clusters/chart_viewer/scili-overall/">Overall <span class="smallprint">({{ scili_all_available_counts }})</span> <span id="scili_overall"> z </span></a>
+        </li>
+        <li>
+          <a href="/{{ cluster_settings.PROJECT_NAME }}/clusters/chart_viewer/scili-friedman/">Friedman Cluster <span class="smallprint">({{ scili_friedman_counts.calculated_available }})</span> <span id="scili_friedman"> z </span></a>
+        </li>
+        <li>
+          <a href="/{{ cluster_settings.PROJECT_NAME }}/clusters/chart_viewer/scili-mezzanine/">Mezzanine Cluster <span class="smallprint">({{ scili_mezzanine_counts.calculated_available }})</span> <span id="scili_mezzanine"> z </span></a>
+        </li>
+      </ul>
+      <!-- <div class="nonfocal legend">
+             <div class="icon running">Running</div>
+             <div>Not currently running</div>
+           </div> -->
+      <div class="nonfocal">
+        <p id="statusmessage"></p>
+        <h3>Library Cluster Contact Info:</h3>
+        <span class="smallprint">(library clusters are managed by CIS)</span>
+      </div> <!-- end div class="nonfocal" -->
+      <ul class="secondary">
+        <li>
+          <a href="tel:14018637457" class="phone">CIS Help Desk <span class="smallprint">(401.863.7457)</span></a>
+        </li>
+        <li>
+          <a href="tel:14018632165" class="phone">Rock Main Desk <span class="smallprint">(401.863.2165)</span></a>
+        </li>
+        <li>
+          <a href="tel:14018633333" class="phone">Friedman Center <span class="smallprint">(401.863.3333)</span></a>
+        </li>
+        <li>
+          <a href="mailto:birkin_diana@brown.edu?subject=feedback on mobile cluster site" class="email">Email Feedback</a>
+        </li>
+      </ul>
+
+      <ul class="nav"> <!-- Preferences -->
+        <li>
+          <a href="/{{ cluster_settings.PROJECT_NAME }}/clusters/preferences/">Preferences<span id="preferences"> z </span></a>
+        </li>
+      </ul>
+
+    </div> <!-- end div id="container" -->
+
+    <div id="footer">
+      Credit for this beautiful layout <br />
+      goes to the <a href="http://m.mit.edu">m.mit.edu</a> designers.
+    </div>
+
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', '{{ cluster_settings.GOOGLE_ANALYTICS_ACCOUNT }}']);
+      _gaq.push(['_trackPageview']);
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+

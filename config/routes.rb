@@ -1,4 +1,17 @@
 Rails.application.routes.draw do
+
+  get 'assembler/lib_mobile'
+
+  get 'assembler/index'
+
+  get 'index', to: 'assembler#index', :as => 'home'
+
+  get 'lib_mobile', to: 'assembler#lib_mobile', :as => 'lib_mobile'
+
+
+  # root 'assembler#index'
+
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

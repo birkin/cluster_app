@@ -5,10 +5,104 @@
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
+
+
+
+
+    <meta http-equiv="content-type" content="application/xhtml+xml"></meta>
+    <meta name="viewport" id="viewport" content="width=device-width, user-scalable=yes"></meta>
+    <meta http-equiv="refresh" content="45"></meta>
+    <title>Brown Library Cluster Availability - beta</title>
+    <link rel="stylesheet" type="text/css" href="{{ cluster_settings.MEDIA_URL }}css/ip.css" />
+    <!-- <link rel="apple-touch-icon" href="../ip/images/icon.png" /> -->
+    <link rel="stylesheet" type="text/css" href="{{ cluster_settings.MEDIA_URL }}css/shuttletrack-ip.css" />
+    <style type="text/css">
+      span#rock_overall {
+        margin-left:10px;
+        padding-left:10px;
+        padding-right:10px;
+        background-image: url("http://chart.apis.google.com/chart?cht=p3&chd=t:{{ rock_all_counts.overall_available_count }},{{ rock_all_counts.overall_inuse_count }}&chs=50x50&chco=00FF00|FF0000");
+        color:transparent;
+        background-repeat: no-repeat;
+        background-position: -11px -15px;
+        }
+      span#rock_level_1 {
+        margin-left:10px;
+        padding-left:10px;
+        padding-right:10px;
+        background-image: url("http://chart.apis.google.com/chart?cht=p3&chd=t:{{ rock_level_1_counts.calculated_available }},{{ rock_level_1_counts.in_use }}&chs=50x50&chco=00FF00|FF0000");
+        color:transparent;
+        background-repeat: no-repeat;
+        background-position: -11px -15px;
+        }
+      span#rock_level_2_main {
+        margin-left:10px;
+        padding-left:10px;
+        padding-right:10px;
+        background-image: url("http://chart.apis.google.com/chart?cht=p3&chd=t:{{ rock_level_2_main_counts.calculated_available }},{{ rock_level_2_main_counts.in_use }}&chs=50x50&chco=00FF00|FF0000");
+        color:transparent;
+        background-repeat: no-repeat;
+        background-position: -11px -15px;
+        }
+      span#rock_level_2_grad {
+        margin-left:10px;
+        padding-left:10px;
+        padding-right:10px;
+        background-image: url("http://chart.apis.google.com/chart?cht=p3&chd=t:{{ rock_level_2_grad_counts.calculated_available }},{{ rock_level_2_grad_counts.in_use }}&chs=50x50&chco=00FF00|FF0000");
+        color:transparent;
+        background-repeat: no-repeat;
+        background-position: -11px -15px;
+        }
+      span#scili_overall {
+        margin-left:10px;
+        padding-left:10px;
+        padding-right:10px;
+        background-image: url("http://chart.apis.google.com/chart?cht=p3&chd=t:{{ scili_all_counts.overall_available_count }},{{ scili_all_counts.overall_inuse_count }}&chs=50x50&chco=00FF00|FF0000");
+        color:transparent;
+        background-repeat: no-repeat;
+        background-position: -11px -15px;
+        }
+      span#scili_friedman {
+        margin-left:10px;
+        padding-left:10px;
+        padding-right:10px;
+        background-image: url("http://chart.apis.google.com/chart?cht=p3&chd=t:{{ scili_friedman_counts.calculated_available }},{{ scili_friedman_counts.in_use }}&chs=50x50&chco=00FF00|FF0000");
+        color:transparent;
+        background-repeat: no-repeat;
+        background-position: -11px -15px;
+        }
+      span#scili_mezzanine {
+        margin-left:10px;
+        padding-left:10px;
+        padding-right:10px;
+        background-image: url("http://chart.apis.google.com/chart?cht=p3&chd=t:{{ scili_mezzanine_counts.calculated_available }},{{ scili_mezzanine_counts.in_use }}&chs=50x50&chco=00FF00|FF0000");
+        color:transparent;
+        background-repeat: no-repeat;
+        background-position: -11px -15px;
+        }
+      span#preferences {
+        margin-left:10px;
+        padding-left:10px;
+        padding-right:10px;
+/*        background-image: url("http://chart.apis.google.com/chart?cht=p3&chd=t:{{ scili_mezzanine_counts.overall_available_count }},{{ scili_mezzanine_counts.overall_inuse_count }}&chs=50x50&chco=00FF00|FF0000");*/
+        color:transparent;
+        background-repeat: no-repeat;
+        background-position: -11px -15px;
+        }
+      #footer {
+        text-align:center;
+        }
+    </style>
+
+
+
+
 </head>
-<body>
+
+<body onload="scrollTo(0,1);" >
 
 <%= yield %>
 
 </body>
+
 </html>
