@@ -13,9 +13,10 @@
     <meta name="viewport" id="viewport" content="width=device-width, user-scalable=yes"></meta>
     <meta http-equiv="refresh" content="45"></meta>
     <title>Brown Library Cluster Availability - beta</title>
-    <link rel="stylesheet" type="text/css" href="{{ cluster_settings.MEDIA_URL }}css/ip.css" />
-    <!-- <link rel="apple-touch-icon" href="../ip/images/icon.png" /> -->
-    <link rel="stylesheet" type="text/css" href="{{ cluster_settings.MEDIA_URL }}css/shuttletrack-ip.css" />
+    <!-- <link rel="stylesheet" type="text/css" href="{{ cluster_settings.MEDIA_URL }}css/ip.css" /> -->
+    <%= stylesheet_link_tag "ip" %>
+    <!-- <link rel="stylesheet" type="text/css" href="{{ cluster_settings.MEDIA_URL }}css/shuttletrack-ip.css" /> -->
+    <%= stylesheet_link_tag "shuttletrack-ip" %>
     <style type="text/css">
       span#rock_overall {
         margin-left:10px;
