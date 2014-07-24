@@ -4,6 +4,7 @@ class AssemblerController < ApplicationController
   end
 
   def lib_mobile
+    # byebug
   end
 
 end

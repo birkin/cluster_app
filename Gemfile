@@ -40,3 +40,10 @@ gem 'spring',        group: :development
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 
+
+# to grab open-status from hours db
+gem 'mysql2'
+# gem 'sequel'
+
+# debugging
+gem 'byebug'
