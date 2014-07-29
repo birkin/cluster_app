@@ -2,6 +2,8 @@ source 'https://rubygems.org'
 
 ruby '2.1.2', :patchlevel => '95'
 
+# For environmental settings
+gem 'dotenv-rails', :groups => [:development, :test, :production]
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1.4'
