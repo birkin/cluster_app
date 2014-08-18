@@ -1,11 +1,10 @@
 <div id="navbar">
   <div class="breadcrumbs homepage">
     <a href="http://brown.edu/" class="homelink">
-      <!-- <img src="{{ cluster_settings.MEDIA_URL }}images/homelink.png" width="62" height="36" alt="MIT Mobile Web Home" /> -->
       <%= image_tag "homelink.png", width: "62", height: "36", alt: "Brown Home" %>
     </a>
     <div class="pagetitle">
-      Lib Cluster Info <span class="smallprint">({{ time }})</span>
+      Lib Cluster Info <span class="smallprint">( <%= @cur_time %> )</span>
     </div> <!-- end div class="pagetitle" -->
   </div> <!-- end div class="breadcrumbs homepage" -->
   <div class="help">

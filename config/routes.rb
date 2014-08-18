@@ -8,6 +8,8 @@ Rails.application.routes.draw do
 
   get 'lib_mobile', to: 'assembler#lib_mobile', :as => 'lib_mobile'
 
+  get 'hours_data', to: 'assembler#hours_data', :as => 'hours_data'
+
 
   # root 'assembler#index'
 
