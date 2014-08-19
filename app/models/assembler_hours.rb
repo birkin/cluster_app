@@ -53,6 +53,7 @@ class AssemblerHours
     return row_data
   end
 
+  public
   def get_open_status( db_data )
     ## Returns open/closed string.
     ## Called by check_open()
