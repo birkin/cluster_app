@@ -1,5 +1,8 @@
+# -*- coding: utf-8 -*-
+
 require 'dotenv'
 require 'mysql2'
+require 'time'
 
 Dotenv.load
 
@@ -11,24 +14,22 @@ class AssemblerHours
   end
 
   def check_open
-    time_arg = Time.now.getutc.to_s
-    date_arg = get_date_arg()
-    results = query_db( date_arg )
+    ## Accesses db data & returns hash.
+    ## Main controller.
+    request_time = Time.now.to_s
+    queried_date = Date.today.to_s  # eventually pass this in
+    results = query_db( queried_date )
     db_data = get_row_data( results )
-    data_hash = db_data
+    db_data_b = get_open_status( db_data )
+    response_hash = build_response_hash( request_time, queried_date, db_data_b )
+    # return response_hash
+    return db_data_b
   end
 
   private
-  def get_date_arg
-    ## Returns date_string for db query.
-    ## Set manually for now, but eventually could be passed in.
-    date_arg = Time.now.getutc.to_date.to_s
-  end
-
-  private
-  def query_db( time_arg )
-    time_arg = Date.today.to_s
-    # byebug
+  def query_db( date_string )
+    ## Queries db; returns resultset hash.
+    ## Called by check_open()
     client = Mysql2::Client.new(
       :host => ENV['RAILS_CLUSTER_APP_DB_DOMAIN'],
       :username => ENV['RAILS_CLUSTER_APP_DB_USER'],
@@ -36,11 +37,14 @@ class AssemblerHours
       :secure_auth => false,
       :database => ENV['RAILS_CLUSTER_APP_DB_NAME']
     )
-    select_statement = "SELECT * from `hours_rock` WHERE `date` = '#{time_arg}'"
+    select_statement = "SELECT * from `hours_rock` WHERE `date` = '#{date_string}'"
     results = client.query( select_statement, :symbolize_keys => true )
   end
 
+  private
   def get_row_data( results )
+    ## Returns hash of first (only) row of results.
+    ## Called by check_open()
     row_data = nil
     results.each do |row|
       row_data = row
@@ -50,24 +54,27 @@ class AssemblerHours
   end
 
   def get_open_status( db_data )
+    ## Returns open/closed string.
+    ## Called by check_open()
     if db_data[:isclosed].to_s == 'n'
       open_status = 'open'
     else
       open_status = 'closed'
     end
+    db_data[:closed_status] = open_status
+    return db_data
   end
 
-  def get_time_opened( db_data, time_arg )
+  def make_open_close_times( time_string )
+    tm = Time.parse( time_string )
     return 'foo'
-    open_time = db_data[:opentime]
-
   end
 
-  def build_response_hash( time_arg )
+  def build_response_hash( request_time, queried_date, db_data_b )
     data_hash = {
-      :request_timestamp => time_arg,
+      :request_timestamp => request_time,
       :response => {
-        :queried_date => 'foo_b',
+        :queried_date => queried_date,
         :queried_date_time_open => 'foo_c',
         :queried_date_time_close => 'foo_d',
         :currently_open => 'foo_e'
