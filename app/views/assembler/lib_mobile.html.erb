@@ -8,8 +8,9 @@
     </div> <!-- end div class="pagetitle" -->
   </div> <!-- end div class="breadcrumbs homepage" -->
   <div class="help">
-    <!-- <a href="{{ cluster_settings.HELP_URL }}"><img src="{{ cluster_settings.MEDIA_URL }}images/help.png" width="34" height="36" alt="Help" /></a> -->
-    <%= image_tag "help.png", width: "34", height: "36", alt: "Help" %>
+    <a href="<%= @help_url %>">
+      <%= image_tag "help.png", width: "34", height: "36", alt: "Help" %>
+    </a>
   </div> <!-- end div class="help" -->
 </div> <!-- end div id="navbar" -->
 

@@ -1,5 +1,10 @@
 # -*- coding: utf-8 -*-
 
+require 'dotenv'
+require 'mysql2'
+
+Dotenv.load
+
 
 class AssemblerController < ApplicationController
 
@@ -8,6 +13,7 @@ class AssemblerController < ApplicationController
 
   def lib_mobile
     @cur_time = Time.now.strftime("%I:%M %P")
+    @help_url = ENV['RAILS_CLUSTER_APP_HELP_URL']
     # byebug
   end
 
