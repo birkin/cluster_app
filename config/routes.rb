@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
 
-  get 'assembler/lib_mobile'
+  # get 'assembler/lib_mobile'
 
-  get 'assembler/index'
+  # get 'assembler/index'
 
   get 'index', to: 'assembler#index', :as => 'home'
 
