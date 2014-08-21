@@ -16,7 +16,7 @@ class AssemblerHoursTest < ActiveSupport::TestCase
       }
     asmblr = AssemblerHours.new
     enhanced_data = asmblr.get_open_status( source_hash )
-    assert_equal( "open", enhanced_data[:closed_status], "PROBLEM" )
+    assert_equal( "open", enhanced_data[:open_or_closed], "PROBLEM" )
   end
 
   test "test perceive closed status" do
@@ -28,7 +28,7 @@ class AssemblerHoursTest < ActiveSupport::TestCase
       }
     asmblr = AssemblerHours.new
     enhanced_data = asmblr.get_open_status( source_hash )
-    assert_equal( "closed", enhanced_data[:closed_status], "PROBLEM" )
+    assert_equal( "closed", enhanced_data[:open_or_closed], "PROBLEM" )
   end
 
 end

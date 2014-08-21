@@ -22,7 +22,6 @@ class AssemblerHours
     db_data = get_row_data( results )
     db_data_b = get_open_status( db_data )
     response_hash = build_response_hash( request_time, queried_date, db_data_b )
-    # return response_hash
     return response_hash
   end
 
@@ -72,6 +71,8 @@ class AssemblerHours
   # end
 
   def build_response_hash( request_time, queried_date, db_data )
+    ## Returns hash.
+    ## Called by check_open()
     data_hash = {
       :request_timestamp => request_time,
       :response => {
