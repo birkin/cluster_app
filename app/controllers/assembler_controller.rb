@@ -18,10 +18,24 @@ class AssemblerController < ApplicationController
   end
 
   def hours_data
-    # render json: { a: 1, b: 2}.to_json
-    @open_determiner = AssemblerHours.new
-    is_open_data = @open_determiner.check_open
-    render json: is_open_data.to_json
+    if not [ "rock", "scili" ].include?( params[:location] )
+      render :text => 'Not Found', :status => '404'
+    else
+      @open_determiner = AssemblerHours.new
+      is_open_data = @open_determiner.check_open( params[:location] )
+      render json: is_open_data.to_json
+    end
   end
+
+  # def hours_data
+  #   @open_determiner = AssemblerHours.new
+  #   is_open_data = @open_determiner.check_open
+  #   render json: is_open_data.to_json
+  # end
+
+  # def hours_data
+  #   render text: params[ :location ]
+  #   render :json => JSON.pretty_generate( is_open_data )
+  # end
 
 end

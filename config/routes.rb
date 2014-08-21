@@ -8,8 +8,9 @@ Rails.application.routes.draw do
 
   get 'lib_mobile', to: 'assembler#lib_mobile', :as => 'lib_mobile'
 
-  get 'hours_data', to: 'assembler#hours_data', :as => 'hours_data'
-
+  get 'hours_data/:location', to: 'assembler#hours_data', :as => 'location_hours_data'
+  # get 'hours_data', to: 'assembler#hours_data', :as => 'hours_data'
+  get 'hours_data', to: redirect( 'hours_data/rock' )
 
   # root 'assembler#index'
 
