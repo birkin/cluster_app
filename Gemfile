@@ -49,3 +49,6 @@ gem 'mysql2'
 
 # debugging
 gem 'byebug'
+
+# eating api dogfood
+gem 'httpclient'
