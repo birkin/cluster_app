@@ -21,21 +21,25 @@ class AssemblerController < ApplicationController
     if not [ "rock", "scili" ].include?( params[:location] )
       render :text => "Bad Request - acceptable locations: 'rock', 'scili'", :status => '400'
     else
-      @open_determiner = AssemblerHours.new
-      is_open_data = @open_determiner.check_open( params[:location] )
-      render json: is_open_data.to_json
+      is_open_data = Rails.cache.fetch("foo2", :expires_in => 5.seconds)
+      if not is_open_data
+        @open_determiner = AssemblerHours.new
+        is_open_data = @open_determiner.check_open( params[:location] )
+        Rails.cache.write( 'foo2', is_open_data, expires_in: 5.seconds )
+      end
+      render :json => JSON.pretty_generate( is_open_data )
     end
   end
 
   # def hours_data
-  #   @open_determiner = AssemblerHours.new
-  #   is_open_data = @open_determiner.check_open
-  #   render json: is_open_data.to_json
-  # end
-
-  # def hours_data
-  #   render text: params[ :location ]
-  #   render :json => JSON.pretty_generate( is_open_data )
+  #   if not [ "rock", "scili" ].include?( params[:location] )
+  #     render :text => "Bad Request - acceptable locations: 'rock', 'scili'", :status => '400'
+  #   else
+  #     @open_determiner = AssemblerHours.new
+  #     is_open_data = @open_determiner.check_open( params[:location] )
+  #     # render json: is_open_data.to_json
+  #     render :json => JSON.pretty_generate( is_open_data )
+  #   end
   # end
 
 end
