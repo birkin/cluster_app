@@ -20,8 +20,8 @@ class AssemblerHours
     queried_date = Date.today.to_s  # eventually pass this in
     results = query_db( queried_date, location )
     db_data = get_row_data( results )
-    db_data_b = get_open_status( db_data )
-    response_hash = build_response_hash( request_time, queried_date, db_data_b )
+    open_closed_status = get_open_status( db_data )
+    response_hash = build_response_hash( request_time, queried_date, location, open_closed_status, db_data )
     return response_hash
   end
 
@@ -88,8 +88,6 @@ class AssemblerHours
     else
       open_status = 'closed'
     end
-    db_data[:open_or_closed] = open_status
-    return db_data
   end
 
   # def make_open_close_times( time_string )
@@ -97,14 +95,15 @@ class AssemblerHours
   #   return 'foo'
   # end
 
-  def build_response_hash( request_time, queried_date, db_data )
+  def build_response_hash( request_time, queried_date, location, open_closed_status, db_data )
     ## Returns hash.
     ## Called by check_open()
     data_hash = {
       :request_timestamp => request_time,
       :response => {
         :queried_date => queried_date,
-        :open_or_closed => db_data[:open_or_closed],
+        :queried_location => location,
+        :open_closed_status => open_closed_status,
         :raw_data => db_data
       }
     }

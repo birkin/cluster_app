@@ -19,7 +19,7 @@ class AssemblerController < ApplicationController
 
   def hours_data
     if not [ "rock", "scili" ].include?( params[:location] )
-      render :text => 'Not Found', :status => '404'
+      render :text => "Bad Request - acceptable locations: 'rock', 'scili'", :status => '400'
     else
       @open_determiner = AssemblerHours.new
       is_open_data = @open_determiner.check_open( params[:location] )
